@@ -1,0 +1,11 @@
+[package]
+name = "i2a-rs"
+version = "0.1.0"
+authors = ["hsfzxjy <hsfzxjy@163.com>"]
+edition = "2018"
+
+[dependencies]
+image = "0.21.1"
+lazy_static = "1.3.0"
+pancurses = "0.16.1"
+clap = "2.33.0"
