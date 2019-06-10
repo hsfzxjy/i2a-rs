@@ -12,6 +12,8 @@ crossterm = "0.9.5"
 term_size = "0.3.1"
 data-encoding = "2.1.2"
 ring = "0.14.6"
+json = "0.11.14"
+regex = "1.1.7"
 
 [features]
 gif_codec = []

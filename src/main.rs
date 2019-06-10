@@ -1,19 +1,22 @@
-pub mod image_parser;
+mod config;
+mod engines;
 mod renderer;
+mod util;
 
 #[macro_use]
 extern crate lazy_static;
 
-
+#[macro_use]
+extern crate json;
 extern crate clap;
 
 extern crate crossterm;
 extern crate image;
 
-use image_parser::ImageParser;
-use renderer::TerminalRenderer;
+// use image_parser::ImageParser;
+// use renderer::TerminalRenderer;
 
-fn main() {
+fn main() -> Result<(), std::boxed::Box<std::error::Error>> {
     let args = clap::App::new("i2a-rs")
         .author("hsfzxjy")
         .about("Show images in terminal using ASCII characters")
@@ -25,14 +28,8 @@ fn main() {
         )
         .get_matches();
 
-    let image_fn = args.value_of("IMAGE").unwrap();
-    // let img = image::open(image_fn).unwrap_or_else(|_| {
-    //     eprintln!("Cannot open image file '{}'.", image_fn);
-    //     std::process::exit(1)
-    // });
 
-    if let Err(e) = TerminalRenderer::new(std::path::Path::new(image_fn)).handle() {
-        eprintln!("{:?}", e);
-        std::process::exit(1)
-    };
+    let image_fn = args.value_of("IMAGE").unwrap();
+    engines::Terminal::new(std::path::Path::new(image_fn)).run()?;
+    Ok(())
 }
