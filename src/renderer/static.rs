@@ -25,8 +25,8 @@ impl StaticRenderer {
 }
 
 impl Renderer for StaticRenderer {
-    fn next(&mut self) -> (String, Duration) {
-        (self.cache.to_owned(), Duration::from_millis(100))
+    fn next(&mut self) -> Option<(String, Duration)> {
+        Some((self.cache.to_owned(), Duration::from_millis(100)))
     }
     fn resize(&mut self, width: usize, height: usize) {
         self.cache = img_to_ascii_color(&self.img, height, width, &self.config);

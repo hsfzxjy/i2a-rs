@@ -26,10 +26,16 @@ fn main() -> Result<(), std::boxed::Box<std::error::Error>> {
                 .required(true)
                 .index(1),
         )
+        .arg(
+            clap::Arg::with_name("once")
+                .help("Play GIF for one cycle, and then exit.")
+                .long("once")
+                .takes_value(false),
+        )
         .get_matches();
 
 
     let image_fn = args.value_of("IMAGE").unwrap();
-    engines::Terminal::new(std::path::Path::new(image_fn)).run()?;
+    engines::Terminal::new(std::path::Path::new(image_fn), args.is_present("once")).run()?;
     Ok(())
 }

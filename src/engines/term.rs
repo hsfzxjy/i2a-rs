@@ -10,7 +10,7 @@ pub struct Terminal {
 }
 
 impl Terminal {
-    pub fn new(path: &Path) -> Terminal {
+    pub fn new(path: &Path, once: bool) -> Terminal {
         Terminal {
             renderer: get_renderer(
                 path,
@@ -18,6 +18,7 @@ impl Terminal {
                     padding: true,
                     dup: true,
                     grayscale: false,
+                    once: once,
                 },
             ),
             old_size: (0, 0),
@@ -59,9 +60,13 @@ impl Terminal {
                 self.resize(&terminal)?;
                 terminal.clear(crossterm::ClearType::All)?;
                 eprintln!("next");
-                let (content, duration) = self.renderer.next();
-                print!("{}", content);
-                std::thread::sleep(duration);
+                if let Some((content, duration)) = self.renderer.next() {
+                    terminal.clear(crossterm::ClearType::All)?;
+                    print!("{}", content);
+                    std::thread::sleep(duration);
+                } else {
+                    break;
+                }
             }
         }
         Ok(())

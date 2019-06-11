@@ -26,10 +26,15 @@ impl AnimationRenderer {
 }
 
 impl Renderer for AnimationRenderer {
-    fn next(&mut self) -> (String, Duration) {
+    fn next(&mut self) -> Option<(String, Duration)> {
         let result = (self.frames[self.current_index].to_owned(), self.duration);
         self.current_index = (self.current_index + 1) % self.frames.len();
-        result
+
+        if self.current_index == 0 && self.config.once {
+            None
+        } else {
+            Some(result)
+        }
     }
     fn resize(&mut self, width: usize, height: usize) {
         use super::super::util::Gif;
