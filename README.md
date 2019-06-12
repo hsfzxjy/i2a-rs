@@ -1,7 +1,5 @@
-<h1 align="center">
-    i2a-rs
-</h1>
-<p style="text-align:center">Yet another Image to ASCII Art tool</p>
+# i2a-rs
+Yet another Image to ASCII Art tool
 
 ## Highlights
 
@@ -38,13 +36,13 @@ cargo run --release images/google.png
 Redner a GIF image and play infinitely
 
 ```bash
-cargo run --release images/google.png
+cargo run --release images/cube.gif
 ```
 
 or just play for one cycle
 
 ```bash
-cargo run --release images/google.png --once
+cargo run --release images/cube.gif --once
 ```
 
 ![GIF-Demo](./assets/demo.gif)
