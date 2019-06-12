@@ -7,3 +7,5 @@
 
 /.vscode/
 .rustfmt.toml
+node_modules
+/assets/*.rec.yml
