@@ -81,7 +81,8 @@ pub fn img_to_ascii<F>(
             let cvalue = pixel[0] as f64 / 255.0;
             grayscale_to_char(cvalue)
         } else {
-            '■'
+            // '■'
+            '\u{2588}'
         };
 
         f(pixel.data, ch);
