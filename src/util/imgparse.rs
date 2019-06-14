@@ -75,7 +75,6 @@ pub fn img_to_ascii<F>(
             for _ in 0..padding_x_l {
                 f([0; 4], ' ');
             }
-
         }
 
         let ch = if grayscale {
@@ -88,7 +87,6 @@ pub fn img_to_ascii<F>(
         f(pixel.data, ch);
         if dup {
             f(pixel.data, ch);
-
         }
 
         if x as usize == tb_width - 1 {
@@ -105,4 +103,3 @@ pub fn img_to_ascii<F>(
         f([0; 4], '\n');
     }
 }
-

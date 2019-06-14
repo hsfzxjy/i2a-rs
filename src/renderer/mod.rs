@@ -1,15 +1,15 @@
-mod traits;
 mod animation;
 mod r#static;
-
-
-use animation::AnimationRenderer;
-use r#static::StaticRenderer;
-pub use traits::Renderer;
+mod traits;
 
 use super::config::Config;
+use animation::AnimationRenderer;
+use r#static::StaticRenderer;
 use std::boxed::Box;
 use std::path::Path;
+
+pub use traits::Renderer;
+
 pub fn get_renderer(path: &Path, config: Config) -> Box<dyn Renderer> {
     let ext = path
         .extension()

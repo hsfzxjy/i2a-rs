@@ -1,9 +1,8 @@
-
 use super::super::config::Config;
 use super::super::renderer::{get_renderer, Renderer};
-
 use std::io::Result;
 use std::path::Path;
+
 pub struct Terminal {
     renderer: Box<dyn Renderer>,
     old_size: (usize, usize),

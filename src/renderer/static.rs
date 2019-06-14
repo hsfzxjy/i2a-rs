@@ -1,11 +1,9 @@
 use super::super::config::Config;
+use super::super::util::img_to_ascii_color;
 use super::traits::Renderer;
 use image::DynamicImage;
-
 use std::path::Path;
 use std::time::Duration;
-
-use super::super::util::img_to_ascii_color;
 
 pub struct StaticRenderer {
     img: DynamicImage,
@@ -21,7 +19,6 @@ impl StaticRenderer {
             cache: String::new(),
         }
     }
-
 }
 
 impl Renderer for StaticRenderer {

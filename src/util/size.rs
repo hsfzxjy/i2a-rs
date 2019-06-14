@@ -1,6 +1,5 @@
 use std::f64;
 
-
 pub fn adjust_size(
     aspect_ratio: f64,
     w: usize,
@@ -40,4 +39,3 @@ pub fn adjust_size(
         h - new_h - padding_y,
     )
 }
-

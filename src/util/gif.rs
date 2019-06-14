@@ -1,22 +1,18 @@
 extern crate data_encoding;
-
 extern crate json;
 extern crate regex;
+
 use super::super::config::Config;
 use super::imgparse::img_to_ascii_color;
+use data_encoding::HEXUPPER;
+use ring::digest::{Context, SHA256};
 use std::io::Read;
-// use std::io::Result;
 use std::path::{Path, PathBuf};
-
 use std::time::Duration;
 
 type Result<T> = std::result::Result<T, std::boxed::Box<std::error::Error>>;
 
-use data_encoding::HEXUPPER;
-use ring::digest::{Context, SHA256};
-
 fn sha256_digest(path: &Path) -> Result<String> {
-
     let mut reader = std::fs::File::open(path)?;
     let mut context = Context::new(&SHA256);
     let mut buffer = [0; 1024];
@@ -179,7 +175,6 @@ impl<'a> Gif<'a> {
     }
 
     pub fn into_parse(self) -> GifParseResult {
-
         if let Ok(result) = self.from_json() {
             return Ok(result);
         }
@@ -208,4 +203,3 @@ fn get_cache_dirname(
 
     Ok(dirname)
 }
-
